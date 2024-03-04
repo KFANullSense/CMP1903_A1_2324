@@ -3,18 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace CMP1903_A1_2324
 {
     internal class Testing
     {
-        /*
-         * This class should test the Game and the Die class.
-         * Create a Game object, call the methods and compare their output to expected output.
-         * Create a Die object and call its method.
-         * Use debug.assert() to make the comparisons and tests.
-         */
+        //This function creates local instances of both Game() and Die(), and ensures that their outputs are within expected bounds.
+        public void TestDie()
+        {
+            Game localGame = new Game(); //Create a local Game class.
 
-        //Method
+            List<int> localDieRolls = localGame.RollDice(printValues: false); //Store the resulting list of dice rolls.
+
+            //Check each output of the individual rolls, and ensure that they are within expected bounds.
+            foreach (int roll in localDieRolls)
+            {
+                Debug.Assert(roll >= 1 && roll <= 6);
+            }
+
+            Die localDieInstance = new Die(); //Create a local Die class.
+
+            int rollToTest = localDieInstance.Roll(); //Roll the die.
+
+            Debug.Assert(rollToTest >= 1 && rollToTest <= 6); //Ensure that the outputted value of the die is within expected bounds.
+        }
     }
 }
